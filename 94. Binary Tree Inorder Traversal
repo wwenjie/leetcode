@@ -1,5 +1,4 @@
 94. Binary Tree Inorder Traversal
-递归法
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -11,8 +10,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
-public:
+1.递归法
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> res;
         inorder(root, res);
@@ -24,4 +22,39 @@ public:
         res.push_back(root->val);
         if(root->right) inorder(root->right, res);
     }
-};
+2.栈
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode* p = root;
+        while(p || !s.empty()) {
+            while(p) {
+                s.push(p);
+                p = p->left;
+            }
+            p = s.top();
+            s.pop();
+            res.push_back(p->val);
+            p = p->right;
+        }
+        return res;
+    }
+3.栈(跟上面类似)
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode* p = root;
+        while(p || !s.empty()) {
+            if(p) {
+                s.push(p);
+                p = p->left;
+            }
+            else {
+                p = s.top();
+                s.pop();
+                res.push_back(p->val);
+                p = p->right;
+            }
+        }
+        return res;
+    }
