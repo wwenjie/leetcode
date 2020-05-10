@@ -1,4 +1,6 @@
 #动态规划
+#类似斐波那契数列,f(n) = f(n-1) + f(n-2)
+
 class Solution {
 public:
     int numDecodings(string s) {
