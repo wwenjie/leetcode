@@ -1,2 +1,2 @@
 # leetcode
-just study and practise
+just study and practise!
